@@ -38,7 +38,7 @@ body{
   border-bottom: 10px;
 }
 
-.jumbotron:nth-child(even){
+.jumbotron:nth-child(odd){
   height: 600px;
   background-color: rgb(0,210,217);
   margin-bottom:0px;
@@ -46,7 +46,7 @@ body{
   vertical-align: center;
 }
 
-.jumbotron:nth-child(odd){
+.jumbotron:nth-child(even){
   height: 600px;
   background-color: white;
   margin-bottom:0px;
@@ -106,4 +106,16 @@ body{
 .about_details{
   text-align: justify;
   margin: 15px;
+  font-size: 18px;
+}
+
+.graph{
+  height: 450px; 
+  width:600px;
+}
+
+.user{
+  float:left;
+  width: 25%;
+  padding: 10px;
 }
