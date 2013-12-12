@@ -3,13 +3,16 @@
 <html>
     <head>
     	<!-- CSS Content -->
-    	<!--<link rel="stylesheet" type="text/css" href="../css/bootstrap/bootstrap.css">-->
+    	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="../css/glass.css">
 		<!--<link rel="stylesheet" type="text/css" href="../css/style.css"> -->
 
-		<!-- Javascript Content -->
-		<script src="../js/jquery.js"></script>
-		<!--<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<!-- Javascript Content 
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/jquery.js"><\/script>')</script>-->
+
+
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 		<!--script src="http://d3js.org/d3.v3.min.js"></script>
 		<script src="d3.v3.min.js"></script>
@@ -19,15 +22,89 @@
 
     </head>
 
-    <h1 id ="header">
-    	<div><img id="bird" src="twitter_logo.png"></div>
+    <h1>
     	
-    	<div>Twitter Eleciton Analytics</div>
-    	<div><img id="bird" src="twitter_logo.png"></div>
     </h1>
     <body>
-    	Content
+        <div class = "navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="header_bar">
+                <span><img id="alien" src="alien.png"></span>
+                            Reddit Rankings
+                <span><img id="alien" src="alien.png"></span>
+            </div>
+        </div>
+    	<div id= "carousel">
+
+
+        </div>
+
+
+        <div class="jumbotron" id="hypothesis">
+            <h2>Hypothesis</h2>
+        </div>
+
+        <div class="jumbotron" id = "data">
+            <h2>Data</h2>
+        </div>
+        <div class="jumbotron" id = "model_1">
+            <h2>Model 1</h2>
+        </div>
+        <div class="jumbotron" id = "model_2">
+            <h2>Model 2</h2>
+        </div>  
+
+        <div class="jumbotron" id = "output">
+            <h2>Output</h2>
+        </div>
+
+        <div class="jumbotron" id ="future_research">
+            <h2>Future Research</h2>
+        </div>
+
+        <div class="jumbotron" id = "conclusion">
+            <h2>Conclusion</h2>
+        </div>
+
+        <div class="jumbotron" id = "about_us">
+            <h2>About Us</h2>
+        </div>
+
+        <div class="jumbotron footer" id = "foot">
+
+            <div id="downloads">
+
+                <span class = "data_download" >
+                    <a href = "user.csv" target="_blank">
+                        <img  class = "down_item" src = "data.jpg">
+                        <div class='data_name'>.csv dataset</div>
+                    </a>
+                </span>
+
+                <span class = "data_download">    
+                    <a href = "Process_Book.zip" target="_blank">
+                        <img class = "down_item" src = "ipython.png">
+                        <div class='data_name'>iPython Notebook</div>
+                    </a>
+                </span>
+
+            </div>
+
+            <div class="footer" id='copyright'>Hello
+                
+
+
+                Project By: Valerie Bradley, Caroline Davis, Weston Sterns, & Will Roller</div>
+
+           
+        </div>
+
     </body>
 
-    <footer>Project By: Valerie Bradley, Caroline Davis, Weston Sterns, & Will Roller </footer>
+
+
+
+
+
+
+    
 </html>

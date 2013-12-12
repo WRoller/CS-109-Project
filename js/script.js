@@ -18,3 +18,10 @@ _window.scroll(function() {
     
     scrollPos = _window.scrollTop();
 });
+
+$(document).keydown(function(e){
+    if (e.keyCode == 39) { 
+       alert(document.documentElement.scrollTop);
+       return false;
+    }
+});
