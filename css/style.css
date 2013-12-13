@@ -110,8 +110,9 @@ body{
 }
 
 .graph{
-  height: 100%; 
-  width:100%;
+  height: 60%; 
+  width:23%;
+  margin: 10px;
 }
 
 .user{
@@ -149,4 +150,9 @@ body{
 .text_box2{
   text-align: justify;
   font-size: 15px;
+}
+
+.equation{
+  height: 30px;
+  width: 30%;
 }

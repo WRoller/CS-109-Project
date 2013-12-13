@@ -68,15 +68,11 @@
                 <br>
             </div>
         </div>
-        <div class="jumbotron" id = "init_question">
-            <h2>Initial Question</h2>
-            <div class = "col-md-4">text</div>
-            <div class = "col-md-8">Viz</div>
-        </div>
         <div class="jumbotron" id = "explore">
-            <h2>Exploratory Data Analysis</h2>
-            <div class = "col-md-8"></div>
-            <div class = "col-md-4">
+            <h2>Exploratory Data Visualizations</h2>
+                <img class = "graph" src="viz/net_vote_hist.png">
+                <img class = "graph" src="viz/up_vote_hist.png">
+                <img class = "graph" src="viz/time_score_scatter.png">
                 <img class = "graph" src="viz/up_net_scatter.png">
             </div>
                 
@@ -86,7 +82,7 @@
         <div class="jumbotron" id = "model_1">
             <h2>Model 1: The Network Approach</h2>
             <div class = "col-md-4">
-                <img class = "graph" src="images/model_1.png">
+                <img class = "equation" src="images/model_1.png">
             </div>
             <div class = "col-md-8 text_box">
                
@@ -109,15 +105,11 @@
                 Our recommentation function takes a username, searches for all the articles that particular user has commented on, and fetches all the similarity scores for each article that the user has commented on and each other articles in database. Sorting by highest similarity score, this model returns the top n recommendations.<br><br>
             </div>
             <div class = "col-md-4">
-                <img class = "graph" src="images/model_2.png">
+                <img class = "equation" src="images/model_2.png">
                 <div>
                     Where <b>A</b> and <b>B</b> are indicator Vectors for which users commented (viewed) the corresponding Reddit links. 
                 </div>
             </div>
-
-
-
-
 
         </div>  
 
@@ -176,12 +168,20 @@
         </div>
         
         <div class="jumbotron" id ="future_research">
-            <h2>Future Research</h2>
+            <h2>Ideas and Features for the Future</h2>
+            <div class="text_box2">
+                <b>1. Get Feedback:</b>
+                Create actual "Stumble Upon" functionality by embedding the submission in the page (rather than providing a URL) and allowing the viewer to like/dislike the given submission. This would then update the prior similarity scores teach the recommender about the user's preferences.  In the current models, we make the assumption that articles on which a user has commented are the type of articles that the user would like to see more of.  However, this does not always seem to be the case, as comment chains on Reddit often devolve into discussions entirely unrelated to the original submission (as we've discovered over the course of this project).  While we currenly use comments as an informative prior, in the future we'd hope to improve our recommendations by incorporating user feedback based on actual "likes" and "dislikes"<BR>
+       
+                <div>
+                <b>2. Evolving Database:</b>
+                Our current recommender is based on a static set of Reddit comments that were pulled based on top Reddit articles in each sub-Reddit at a specific point in time.  Obviously this set of comments becomes less relevent with each passing day, but are still the foundation of our recommendation systems.  This static database also makes it impossible for us to recommend articles that were posted after the date on which we scraped our data, which is a huge shortcoming.  In the future we'd love to make the database dynamic, and update it each day to incorporate new articles and comments.  Also, the data only represent a small subset of the entire comment history on Reddit (all of what we were able to pull due to computing limitations), so may be a biased sample. <BR>
+                <b>3. Scalability:</b>
+                Mentioned above, one of the major problems we ran into was processing and scraping the massive volume of data available on Reddit.  We were only able to get Model 2 to run on a subset of the full comment data (the way the code above is written, recommendations are based only on comments pulled from sub-Reddits 0-50 out of 125).  The code below shows our attempt to build the database using MRJob.  The first piece of code shows the data manipulation that was necessary to format the data in such a way that MRJob would be able to process it by writing it to a csv file, which took nearly as long as building the small database itself.  The second piece of code is (almost complete) MRJob code that would build the database based on the entire set of comment data.  Due to time constraints we opted to perfect our recommenders on smaller subsets of data rather than rush to scale them to be able to run on the whole data set.  In the future we would love to be able to generate a database for all Reddit comments!
+                </div>
+            </div>
         </div>
 
-        <div class="jumbotron" id = "conclusion">
-            <h2>Conclusion</h2>
-        </div>
 
         <div class="jumbotron" id = "about_us">
             <h2>About Us</h2>
