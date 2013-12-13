@@ -5,29 +5,15 @@
     	<!-- CSS Content -->
     	<link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="../css/style.css">
-		<!--<link rel="stylesheet" type="text/css" href="../css/style.css"> -->
 
-		<!-- Javascript Content 
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/jquery.js"><\/script>')</script>-->
-
-
+        <!-- JS Content -->
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 		<script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
         <script src="../js/bootstrap.js"></script>
-        <!--<script src="../js/bootstrap.min.js"></script>-->
         <script src="../js/dropdown.js"></script>
-		<!--script src="http://d3js.org/d3.v3.min.js"></script>
-		<script src="d3.v3.min.js"></script>
-		
-    	<script src="js/d3.v3.js"></script>-->
 		<script src="../js/script.js"></script>
-
     </head>
 
-    <h1>
-    	
-    </h1>
     <body>
         <div class = "navbar navbar-inverse navbar-fixed-top" role="navigation">
             <div class="header_bar">
@@ -40,41 +26,55 @@
 
         <div class="jumbotron" id="overview">
             <h2>Overview and Motivation</h2>
-
+            <div class = "col-md-4">
+                <iframe width="560" height="420" src="http://www.youtube.com/embed/7Ww2xJjrP4w" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <div class = "col-md-8">Viz</div>
         </div>
 
         <div class="jumbotron" id = "related_work">
             <h2>Related Work</h2>
+            <div class = "col-md-8">Viz</div>
+            <div class = "col-md-4">text</div>
         </div>
         <div class="jumbotron" id = "init_question">
             <h2>Initial Question</h2>
+            <div class = "col-md-4">text</div>
+            <div class = "col-md-8">Viz</div>
         </div>
         <div class="jumbotron" id = "explore">
             <h2>Exploratory Data Analysis</h2>
-            <img class = "graph" src="viz/up_net_scatter.png">
+            <div class = "col-md-8"></div>
+            <div class = "col-md-4">
+                <img class = "graph" src="viz/up_net_scatter.png">
+            </div>
+                
+            
         </div>
 
         <div class="jumbotron" id = "model_1">
             <h2>Binary Collaborative Filtering</h2>
         </div>  
 
+        <div class="jumbotron" id = "model_2">
+            <h2>Database Model</h2>
+        </div>  
 
         <div class="jumbotron" id ="user_example">
             <h2>User Example</h2>
             <div class="row-fluid">
                 <div class="span3 user">
-                    User
-
                     <div class="btn-group">
-                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                        <div id = "selected_user">User List</div> <span class="caret"></span>
+                        <div id="user_id">User</div>   
+                      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id = "selected_user" >
+                        <div id = "selected_user">Select User</div>
                       </button>
                       <ul class="dropdown-menu" role="menu">
-                        <li> <a class = "user_examples 1" id="user_1" >User 1</a></li>
-                        <li><a class = "user_examples 2" id="user_2">User 2</a></li>
-                        <li><a class = "user_examples 3" id="user_3">User 3</a></li>
-                        <li><a class = "user_examples 4" id="user_4">User 4</a></li>
-                        <li><a class = "user_examples 5" id="user_5">User 5</a></li>
+                        <li> <a class = "user_examples 1" id="user_1" >way_fairer</a></li>
+                        <li><a class = "user_examples 2" id="user_2">Warlizard</a></li>
+                        <li><a class = "user_examples 3" id="user_3">I_are_facepalm</a></li>
+                        <li><a class = "user_examples 4" id="user_4">kickme444</a></li>
+                        <li><a class = "user_examples 5" id="user_5">nowhathappenedwas</a></li>
                       </ul>
                     </div>
 
@@ -113,14 +113,7 @@
                 </div>
             </div>
         </div>
-        <div class="jumbotron" id = "model_2">
-            <h2>Model 2</h2>
-        </div>  
         
-        <div class="jumbotron" id ="future_research">
-            <h2>Future Research</h2>
-        </div>
-
         <div class="jumbotron" id ="future_research">
             <h2>Future Research</h2>
         </div>
@@ -160,9 +153,9 @@
             <div id="downloads">
 
                 <span class = "data_download" >
-                    <a href = "user.csv" target="_blank">
+                    <a href = "data.zip " target="_blank">
                         <img  class = "down_item" src = "images/data.jpg">
-                        <div class='data_name'>.csv dataset</div>
+                        <div class='data_name'>Main .csv Dataset</div>
                     </a>
                 </span>
 
@@ -177,18 +170,7 @@
 
             <div class="footer" id='copyright'>
                 Project By: Valerie Bradley, Caroline Davis, Weston Sterns, & Will Roller
-            </div>
-
-           
+            </div>  
         </div>
-
-    </body>
-
-
-
-
-
-
-
-    
+    </body>   
 </html>
