@@ -134,3 +134,8 @@ body{
 #overview{
   margin-top: 10px;
 }
+
+.text_box{
+  text-align: justify;
+  font-size: 15px;
+}

@@ -19,26 +19,36 @@ function username() {
    var user_4 = [["1kr9v1","1ko4bq","1gismf", "lwdi5","e04d3"],["1gismf","1ko4bq","e04d3","1kr9v1","lwdi5"],["aouv5","uny8e","1kak7i","1i7xvc","s9ipk"]];
    var user_5 = [["1ggkce","1qhehw","1g9i7c", "1hfb04","1h3w8f"],["13vbtc","svemv","1iy9ku","1ruax9","18f5sn"],["1nbf8s","1ftub2","16ccau","11z8lc","1fddok"]];
 
+
+
    var main_array=[user_1,user_2,user_3,user_4,user_5];
    
+
+   var sub_link_name = [[["Funny", "Funny", "Pics", "Pics", "Pics"], ["Pics", "Worldnews", "Pics", "Wtf", "Funny"], ["Starwars", "Historyporn", "Space", "Freebies", "Earthporn"]], [["Announcements", "Blog", "Gaming", "News", "Gifs"], ["Blog", "Announcements", "News", "Gaming", "Gifs"], ["Science", "Firstworldproblems", "Circlejerk", "Fiftyfifty", "Seduction"]], [["Todayilearned", "Todayilearned", "Todayilearned", "Gaming", "Movies"], ["Technology", "Science", "Science", "Bestof", "Science"], ["Wallpapers", "Entertainment", "Gameofthrones", "Spaceporn", "Science"]], [["Blog", "Blog", "Blog", "Blog", "Blog"], ["Blog", "Blog", "Blog", "Blog", "Blog"], ["Programming", "Scifi", "Nfl", "History", "Art"]], [["Worldnews", "Worldnews", "Politics", "Politics", "Politics"], ["Science", "Technology", "Science", "Science", "Bestof"], ["Dataisbeautiful", "Gameofthrones", "Askhistorians", "Nfl", "Gameofthrones"]]];
 
    //For each current link the user engages with 
     jQuery.each(main_array[index][0], function(i, val){
         
         $( ".current_links." + (i+1) ).attr("href", "http://www.reddit.com/"+val );
-        $( ".current_links." + (i+1) ).text("Content");
+
+        //console.log(sub_link_name[index][0][val]);
+        $( ".current_links." + (i+1) ).text(sub_link_name[index][0][i]);
     });
 
     //For model 1 recommendations 
     jQuery.each(main_array[index][1], function(i, val){
 
         $( ".rec_1." + (i+1) ).attr("href", "http://www.reddit.com/"+val );
+        $( ".rec_1." + (i+1) ).text(sub_link_name[index][1][i]);
+
     });
 
     //For model 2 recommendations 
     jQuery.each(main_array[index][2], function(i, val){
 
         $( ".rec_2." + (i+1) ).attr("href", "http://www.reddit.com/"+val );
+        $( ".rec_2." + (i+1) ).text(sub_link_name[index][2][i]);
+
     });
 }
 // current_links [1,5], rec_1 [1,5]
