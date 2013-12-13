@@ -37,15 +37,36 @@
                 <div>
                     <b>Motivation:</b><br>Reddit has been calling for developers to help them create a new recommender --
                     <i>"One of reddit's greatest strengths is the huge collection of niche communities and categories of content that we have. One of our greatest weaknesses is that most of it never makes it to the front page. So many vast, undiscovered communities. We have loads and loads of these communities, some very tiny, but they just aren't very discoverable. I think that helping people find this stuff is a problem worth solving, and so do plenty of researchers and grad students that have contacted us asking for this data"</i><br>
+                    <a href="http://www.reddit.com/r/announcements/comments/ddz0s/reddit_wants_your_permission_to_use_your_data_for/">-Reddit's Call for Data</a>
                 </div>
 
             </div>
         </div>
 
         <div class="jumbotron" id = "related_work">
-            <h2>Related Work</h2>
-            <div class = "col-md-8">Viz</div>
-            <div class = "col-md-4">text</div>
+            <h2>Data Overview</h2>
+            <div class = "col-md-8 text_box1">        
+                    1. <b>Scrape top subreddits categories:</b><br>
+                    -We used http://www.redditlist.com/, which lists the top 125 Reddit subcategories by "Recent Activity", "Subscribers", and "Growth (past 24 hours)". We chose the top 125 subreddits by Subscribers so that the submission came from a larger timeframe and represented the most popular over time.<br>
+                    <b>2. Build datasets for analysis: </b><br>
+                    -This meant pulling subreddits -> submissions -> comments.We decided to pull the top 125 subReddits, the 100 top submissions for each SubReddit, and the  10 'best'comments for each submission. We split the information into two datasets: user-specific and submission-specific info.<br>
+                    <b>The two data sets consisted of the following variables:</b><br>
+                    <u>userlist:</u> username, link_karma, comment_karma, total # comments made (according to our set), redditor since<br>
+                    <u>commentlist: </u>comment author, comment text, comment score, comment ups, comment downs, comment post date, item id, item score, item author, item post date, item downvotes, item upvotes, item total # comments<br><br>
+
+                    <b><i>Why did we go for "best" versus "top" comments?</i></b><br>
+                    Reddit has a new sorting algorithm called "best" to solve the problem of "top" comments being only those from the first few hours after a submission was posted:<br>
+                    <div align="center"><i>"reddit is heavily biased toward comments posted early. When a mediocre joke gets posted in the first hour a story is up, it will become the top comment if it's even slightly funny. The reason for this bias is that once a comment gets a few early upvotes, it's moved to the top. The higher something is listed, the more likely it is to be read (and voted on), and the more votes the comment gets. It's a feedback loop that cements the comment's position, and a comment posted an hour later has little chance of overtaking it -- even if people reading it are upvoting it at a much higher rate." </i>-<a href="http://blog.reddit.com/2009/10/reddits-new-comment-sorting-system.html"><br>xkcd guest-blogging on Reddit</a><br><BR></div>
+                    <i>Spoiler: this algorithm for sorting comments inspired us later on for a way to recommend new content</i>
+            </div>
+            <div class = "col-md-4">
+                <img class = "graph" src="viz/comments_per_user.png">
+                <h3><u>Summary Statistics</u></h3>
+                <b>Unique Subreddits: 116</b><br>
+                <b>Unique Users: 85,336</b><br> 
+                <b>Unique Comments: 110,775</b><br>
+                <br>
+            </div>
         </div>
         <div class="jumbotron" id = "init_question">
             <h2>Initial Question</h2>
@@ -63,11 +84,41 @@
         </div>
 
         <div class="jumbotron" id = "model_1">
-            <h2>Binary Collaborative Filtering</h2>
+            <h2>Model 1: The Network Approach</h2>
+            <div class = "col-md-4">
+                <img class = "graph" src="images/model_1.png">
+            </div>
+            <div class = "col-md-8 text_box">
+               
+                Let's take a specific user, loook at all the articles they've commented, and then look at other users who have commented on those same articles, going out 2 degrees of separation of mutual commenters to include in our calculation. We will then rate each of those comments and give them a score, weighted by # of Up Votes / Total Score. We will feed this "score", which is a probability, into a random binomial generator to calculate the confidence interval of that probability, and then take the confidence interval's lower-bound. <br>
+                <br>
+                Still looking at this specific user, we will rank all the comments in the whole network (of 2 degrees of separation) by this lower-bound score, and recommend the top 10 unique articles given from the highest comment ratings once sorted.<br>
+            </div>
+                
         </div>  
 
         <div class="jumbotron" id = "model_2">
-            <h2>Database Model</h2>
+            <h2>Model 2: The Item-Based Approach</h2>
+            <div class = "col-md-8 text_box2">
+                This model, on the other hand, does not calculate on the fly, and instead, it builds a database. It first groups all the comments dataset by the submission link on which a user has commented. Then, it creates a list of all the users who have commented on a single submission. This list is then turned  into a single string, on which we run "Bag of Words", to generate a binary indicator vector for each submission link. After that, we will have a matrix of N unique users by M unique submissions. Each entry in one row of the matrix corresponds to one user of that row's specific submission. The entry will be 0 if the specific user has not commented on that row's particular article, and 1 if he/she has. <br>
+                We then look at every possible combo of 2 links in the matrix to calculate the similarity score. This is done by 
+                calculating the "cosine distance" between 2 links-- which is essentially, the scaled dot product, normalized to be between 0 and 1:<br>
+
+                This concept of "cosine distance" comes from Amazon, which uses "<a href = "http://en.wikipedia.org/wiki/Slope_One">binary collaborative filtering</a>" as one of its recommendation systems, for when only binary data is available, not user's ratings for a particular article or product. In Amazon's case the binary data is whether a shopper did or did not purchase a product after viewing, and for us it was whether a user commented or not.
+                <br>
+                Our recommentation function takes a username, searches for all the articles that particular user has commented on, and fetches all the similarity scores for each article that the user has commented on and each other articles in database. Sorting by highest similarity score, this model returns the top n recommendations.<br><br>
+            </div>
+            <div class = "col-md-4">
+                <img class = "graph" src="images/model_2.png">
+                <div>
+                    Where <b>A</b> and <b>B</b> are indicator Vectors for which users commented (viewed) the corresponding Reddit links. 
+                </div>
+            </div>
+
+
+
+
+
         </div>  
 
         <div class="jumbotron" id ="user_example">
